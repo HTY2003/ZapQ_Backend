@@ -1,9 +1,4 @@
 from django.db import models
-from django.contrib.auth import get_user_model
-from .serializers import User
-
-
-User = get_user_model()
 
 
 class Queue(models.Model):
@@ -17,3 +12,8 @@ class Queue(models.Model):
     ended = models.BooleanField()
     users = models.ManyToManyField(User, related_name='queues')
     allusers = models.ManyToManyField(User, related_name='allqueues')
+
+
+class User(models.Model):
+    username = models.CharField(max_length=200, unique=True)
+    password = models.CharField(max_length=200)
